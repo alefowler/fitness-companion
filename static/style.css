@@ -19,8 +19,20 @@ nav {
     align-items: center;
 }
 
+h1 {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+h2 {
+    text-align: center;
+    margin: 20px
+}
+
 nav h1 {
-    color: #e94560;
+    color: white;
     font-size: 22px;
 }
 
@@ -77,20 +89,106 @@ p {
     max-width: 500px;
 }
 
-input {
+.input-box {
+    display: block; 
+    position: relative;
+    margin: 10px 10px 30px;
+}
+
+.input-box input {
     width: 100%;
-    padding: 12px;
-    margin: 10px 0;
-    border-radius: 6px;
-    border: 1px solid #444;
-    background-color: #1a1a2e;
+    padding: 15px;
+    border-radius: 8px;
+    border: 2px solid #a0a0b0;
+    box-sizing: border-box;
+    background-color: transparent;
     color: white;
     font-size: 15px;
 }
 
-label {
-    display: block;
-    text-align: left;
-    margin-top: 10px;
+.input-box label {
+    position: absolute;
     color: #a0a0b0;
+    left: 12px;
+    top: 18px;
+    pointer-events: none;
+    transition: all 0.3s ease-in-out; 
+    padding: 0px 5px;
+}
+
+input:focus + label,
+input:valid + label {
+    top: -20px;
+    font-size: 12px;
+}
+
+button {
+    margin: 20px;
+    color: white;
+    background-color: #e94560;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+}
+
+button:hover {
+    background-color: #c73652;
+}
+
+.register {
+    margin-left: 20px;
+    color: white;
+}
+.workout-table {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+table {
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 25px 0;
+    box-shadow: 0 0 20px #0e0e0f;
+    
+}
+
+th {
+    background-color: #e94560;
+    padding: 10px;
+}
+
+td {
+    padding: 10px;
+}
+
+tr {
+     border-bottom: 1px white;
+}
+
+a {
+    color: white;
+}
+
+a:hover {
+    color: #e94560;
+}
+
+ input {
+    width: 100%;
+    margin: 5px 20px;
+    padding: 12px;
+    border-radius: 8px;
+    border: 2px solid #a0a0b0;
+    box-sizing: border-box;
+    background-color: transparent;
+    color: white;
+    font-size: 15px;
+}
+
+ label {
+    color: #a0a0b0;
+    margin: 10px 30px;
 }
