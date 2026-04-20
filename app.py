@@ -90,22 +90,32 @@ def dashboard():
     if 'user_id' not in session:
         return redirect(url_for('login'))
 
-    # Get the workout type entered by the user
     exercise_filter = request.args.get('exercise', '').strip()
 
     conn = get_db_connection()
     cursor = conn.cursor()
 
-    cursor.execute("""
-        SELECT * FROM workouts
-        WHERE user_id = ?
-        ORDER BY date DESC, id DESC
-    """, (session['user_id'],))
+    if exercise_filter:
+        cursor.execute("""
+            SELECT * FROM workouts
+            WHERE user_id = ?
+              AND LOWER(exercise) LIKE LOWER(?)
+            ORDER BY date DESC, id DESC
+        """, (session['user_id'], f"%{exercise_filter}%"))
+    else:
+        cursor.execute("""
+            SELECT * FROM workouts
+            WHERE user_id = ?
+            ORDER BY date DESC, id DESC
+        """, (session['user_id'],))
 
     workouts = cursor.fetchall()
     conn.close()
 
-    return render_template('dashboard.html', workouts=workouts)
+    return render_template(
+        'dashboard.html',
+        workouts=workouts,
+        exercise_filter=exercise_filter)
 
 
 @app.route('/delete_workout/<int:workout_id>')
